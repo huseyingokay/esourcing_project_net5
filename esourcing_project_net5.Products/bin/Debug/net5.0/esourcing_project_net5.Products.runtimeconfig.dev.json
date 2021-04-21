@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\XRAYS\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\XRAYS\\.nuget\\packages"
+    ]
+  }
+}
