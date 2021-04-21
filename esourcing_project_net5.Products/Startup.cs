@@ -1,5 +1,7 @@
 using esourcing_project_net5.Products.Data;
 using esourcing_project_net5.Products.Data.Interfaces;
+using esourcing_project_net5.Products.Repositories;
+using esourcing_project_net5.Products.Repositories.Interfaces;
 using esourcing_project_net5.Products.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +31,8 @@ namespace esourcing_project_net5.Products
             services.AddSingleton<IProductDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value);
 
             // When we call IProductContext, it will call ProductContext
-            services.AddTransient<IProductContext, ProductContext>(); 
+            services.AddTransient<IProductContext, ProductContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
