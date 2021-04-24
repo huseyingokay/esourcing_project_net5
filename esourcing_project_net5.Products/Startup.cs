@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 namespace esourcing_project_net5.Products
 {
@@ -24,7 +25,6 @@ namespace esourcing_project_net5.Products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             services.Configure<ProductDatabaseSettings>(Configuration.GetSection(nameof(ProductDatabaseSettings)));
@@ -33,6 +33,14 @@ namespace esourcing_project_net5.Products
             // When we call IProductContext, it will call ProductContext
             services.AddTransient<IProductContext, ProductContext>();
             services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "esourcing_project_net5.Products",
+                    Version = "v1"
+                });
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +49,8 @@ namespace esourcing_project_net5.Products
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "esourcing_project_net5.Products v1"));
             }
 
             app.UseHttpsRedirection();

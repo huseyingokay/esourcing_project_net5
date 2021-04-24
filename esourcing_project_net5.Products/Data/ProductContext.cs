@@ -7,7 +7,7 @@ namespace esourcing_project_net5.Products.Data {
     public class ProductContext : IProductContext {
 
         public ProductContext(IProductDatabaseSettings settings) {
-            var client = new MongoClient(settings.ConnectionStrings);
+            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
             Products = database.GetCollection<Product>(settings.CollectionName);

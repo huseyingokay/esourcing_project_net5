@@ -10,21 +10,14 @@ namespace esourcing_project_net5.Products.Controllers {
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase {
-        #region Variables
-
         private readonly IProductRepository _productRepository;
         private readonly ILogger<ProductController> _logger;
-
-        #endregion
-
-        #region Constuctor
 
         public ProductController(IProductRepository productRepository, ILogger<ProductController> logger) {
             _productRepository = productRepository;
             _logger = logger;
         }
 
-        #endregion
 
         #region CRUD
 
@@ -67,6 +60,5 @@ namespace esourcing_project_net5.Products.Controllers {
         }
 
         #endregion
-
     }
 }
